@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">EjercicioIntent1</string>
+    <string name="activitymainText">ActivityMain</string>
+    <string name="btnAmarilloText">amarillo</string>
+    <string name="btnRojoText">rojo</string>
+    <string name="activityDetalleText">ActivityDetalle</string>
+    <string name="micolor">MiColor</string>
+</resources>
