@@ -11,6 +11,7 @@ class ActivityDetalle : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detalle)
 
+        //Para recoger los valores "extras" de otra Actividad a través de su Intent:
         val valor = intent.getStringExtra("color")
         miColorText.setText(valor)
         if (valor == "amarillo") {
