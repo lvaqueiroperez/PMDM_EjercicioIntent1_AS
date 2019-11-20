@@ -5,4 +5,10 @@
     <string name="btnRojoText">rojo</string>
     <string name="activityDetalleText">ActivityDetalle</string>
     <string name="micolor">MiColor</string>
+    <string name="url1">www.google.com</string>
+    <string name="num1"></string>
+    <string name="num2"></string>
+    <string name="suma">Sumar</string>
+    <string name="volver">Volver</string>
+    <string name="result">Resultado: </string>
 </resources>

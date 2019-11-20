@@ -1,13 +1,21 @@
 package com.ejemploapp2.ejerciciointent1
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.browse
+import org.jetbrains.anko.db.INTEGER
+import java.lang.Integer.parseInt
+
+//CONSTANTE GLOBAL PARA EL EJERCICIO DE LA SUMA
+const val SUMA_REQUEST = 1
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +40,12 @@ class MainActivity : AppCompatActivity() {
         //OJO!!! "it" es una referencia a la variable/objeto con la que estamos llamando, en este caso, al listener (it = nuestros botones)
         btnAm.setOnClickListener { cambiarDetalle(it) }
         btnRojo.setOnClickListener { cambiarDetalle(it) }
+
+        //PARA ACCEDER A LA URL: (AÑADIR HTTP://)
+        btnUrl.setOnClickListener { browse("http://www.google.com") }
+
+        //PARA ACCEDER A LA FUNCION SUMAR:
+        btnSuma.setOnClickListener { sumar(it) }
 
     }
 
@@ -66,16 +80,51 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun sumar(v: View) {
+
+        val botonAux = v as Button
+
+        val miIntent = Intent(this, ActivitySumar::class.java)
+
+        miIntent.putExtra("num1", num1.text)
+        miIntent.putExtra("num2", num2.text)
+
+
+
+        startActivityForResult(miIntent, SUMA_REQUEST)
+
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1) {
+
+            if (requestCode == Activity.RESULT_OK) {
+
+                if (data != null) {
+
+                    result1.setText(data.getIntExtra("result", 0))
+
+                }
+
+
+            }
+
+        }
+    }
+
 
     //Gracias a Anko, el builder del Intent se puede simplificar en una línea: PENDIENTE
     /*fun cambiarDetalle(v : View){
 
         startActivity<ActivityDetalle::class.java>("color" to "amarillo")
 
-
-
     }
-
      */
+
+    //EJERCICIO DE SUMA:
+
 
 }
