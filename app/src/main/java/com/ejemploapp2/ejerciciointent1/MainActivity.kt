@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sumar.*
 import org.jetbrains.anko.browse
 import org.jetbrains.anko.db.INTEGER
 import java.lang.Integer.parseInt
@@ -20,6 +21,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //PARA ACCEDER A LA URL: (AÑADIR HTTP://)
+        btnUrl.setOnClickListener { browse("http://www.google.com") }
+
+        //ACTIVIDAD DETALLE
 
         //SIN FUNCIÓN, DIRECTAMENTE CON LISTENER (habría que crear un listener con todas esas líneas para cada botón)
 
@@ -41,11 +47,12 @@ class MainActivity : AppCompatActivity() {
         btnAm.setOnClickListener { cambiarDetalle(it) }
         btnRojo.setOnClickListener { cambiarDetalle(it) }
 
-        //PARA ACCEDER A LA URL: (AÑADIR HTTP://)
-        btnUrl.setOnClickListener { browse("http://www.google.com") }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //ACTIVIDAD SUMAR
 
         //PARA ACCEDER A LA FUNCION SUMAR:
         btnSuma.setOnClickListener { sumar(it) }
+
 
     }
 
@@ -60,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         val botonAux = v as Button
         //creamos una variable que contenga el Intent (builder de Intent según la página de Anko en GitHub)
         val miIntent = Intent(this, ActivityDetalle::class.java)
-        //Para diferenciar con qué botón estamos accediendo, hacemos un if simple:
+        //Para diferenciar con qué botón estamos accediendo, hacemos un if simple con su id:
         if (botonAux == btnAm) {
             //El intent funciona como una especie de "HashMap", con una Clave y un Valor
             //Añadimos un elemento o "extra" al Intent por cada valor con el que queramos trabajar:
@@ -85,9 +92,12 @@ class MainActivity : AppCompatActivity() {
         val botonAux = v as Button
 
         val miIntent = Intent(this, ActivitySumar::class.java)
+        //OJO !! ADEMÁS DEL ".text"/".getText()" HAY QUE PONER ".toString()" !!! (como pasar a int sin que crashee??)
+        miIntent.putExtra("num1", num1T.text.toString())
+        miIntent.putExtra("num2", num2T.text.toString())
 
-        miIntent.putExtra("num1", num1.text)
-        miIntent.putExtra("num2", num2.text)
+        print(num1T.text.toString())
+        print(num2T.text.toString())
 
 
 
@@ -96,23 +106,25 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    //PARA OBTENER DATOS DESDE OTRA ACTIVIDAD A LA QUE HEMOS LLAMADMO CON "startActivityForResult()":
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == 1) {
+        if (requestCode == SUMA_REQUEST) {
 
-            if (requestCode == Activity.RESULT_OK) {
+            if (resultCode == Activity.RESULT_OK) {
 
                 if (data != null) {
 
-                    result1.setText(data.getIntExtra("result", 0))
+                    result1.setText(data.getStringExtra("result"))
 
                 }
 
 
             }
-
         }
+
+
     }
 
 
@@ -123,8 +135,6 @@ class MainActivity : AppCompatActivity() {
 
     }
      */
-
-    //EJERCICIO DE SUMA:
 
 
 }

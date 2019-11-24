@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">EjercicioIntent1</string>
-    <string name="activitymainText">ActivityMain</string>
+    <string name="app_name" translatable="false">EjercicioIntent1</string>
+    <string name="activitymainText" translatable="false">ActivityMain</string>
     <string name="btnAmarilloText">amarillo</string>
     <string name="btnRojoText">rojo</string>
-    <string name="activityDetalleText">ActivityDetalle</string>
-    <string name="micolor">MiColor</string>
-    <string name="url1">www.google.com</string>
-    <string name="num1"></string>
-    <string name="num2"></string>
-    <string name="suma">Sumar</string>
-    <string name="volver">Volver</string>
-    <string name="result">Resultado: </string>
+    <string name="activityDetalleText" translatable="false">ActivityDetalle</string>
+    <string name="micolor" translatable="false">MiColor</string>
+    <string name="url1" translatable="false">www.google.com</string>
+    <string name="num1" translatable="false"></string>
+    <string name="num2" translatable="false"></string>
+    <string name="suma" translatable="false">Sumar</string>
+    <string name="volver" translatable="false">Volver</string>
+    <string name="result" translatable="false">Resultado: </string>
 </resources>
