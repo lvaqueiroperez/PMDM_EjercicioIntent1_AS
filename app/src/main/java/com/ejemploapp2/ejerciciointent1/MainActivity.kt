@@ -93,8 +93,8 @@ class MainActivity : AppCompatActivity() {
 
         val miIntent = Intent(this, ActivitySumar::class.java)
         //OJO !! ADEMÁS DEL ".text"/".getText()" HAY QUE PONER ".toString()" !!! (como pasar a int sin que crashee??)
-        miIntent.putExtra("num1", num1T.text.toString())
-        miIntent.putExtra("num2", num2T.text.toString())
+        miIntent.putExtra("num1", parseInt(num1T.text.toString()))
+        miIntent.putExtra("num2", parseInt(num2T.text.toString()))
 
         print(num1T.text.toString())
         print(num2T.text.toString())
@@ -115,8 +115,8 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
 
                 if (data != null) {
-
-                    result1.setText(data.getStringExtra("result"))
+                    //RECOGEMOS EN RESULTADO COMO UN STRING
+                    result1.setText(data.getIntExtra("result", 0).toString())
 
                 }
 
