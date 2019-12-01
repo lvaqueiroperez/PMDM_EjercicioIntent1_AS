@@ -12,7 +12,7 @@ import org.jetbrains.anko.browse
 import org.jetbrains.anko.db.INTEGER
 import java.lang.Integer.parseInt
 
-//CONSTANTE GLOBAL PARA EL EJERCICIO DE LA SUMA
+//CONSTANTE GLOBAL PARA EL EJERCICIO DE LA SUMA (se utiliza como "request_code")
 const val SUMA_REQUEST = 1
 
 class MainActivity : AppCompatActivity() {
@@ -92,21 +92,17 @@ class MainActivity : AppCompatActivity() {
         val botonAux = v as Button
 
         val miIntent = Intent(this, ActivitySumar::class.java)
-        //OJO !! ADEMÁS DEL ".text"/".getText()" HAY QUE PONER ".toString()" !!! (como pasar a int sin que crashee??)
+        //OJO !! ADEMÁS DEL ".text"/".getText()" HAY QUE PONER ".toString()"  PARA OBTENER EL DATO COMO UN STRING !!!
+        //(y usamos un parse para transformarlo en int)
         miIntent.putExtra("num1", parseInt(num1T.text.toString()))
         miIntent.putExtra("num2", parseInt(num2T.text.toString()))
-
-        print(num1T.text.toString())
-        print(num2T.text.toString())
-
-
 
         startActivityForResult(miIntent, SUMA_REQUEST)
 
 
     }
 
-    //PARA OBTENER DATOS DESDE OTRA ACTIVIDAD A LA QUE HEMOS LLAMADMO CON "startActivityForResult()":
+    //PARA OBTENER DATOS DESDE OTRA ACTIVIDAD A LA QUE HEMOS LLAMADO CON "startActivityForResult()":
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -115,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
 
                 if (data != null) {
-                    //RECOGEMOS EN RESULTADO COMO UN STRING
+                    //RECOGEMOS EN RESULTADO COMO UN STRING, YA QUE EN LA ETIQUETA DE TEXTO SOLO SE PUEDEN PONER STRINGS !!!
                     result1.setText(data.getIntExtra("result", 0).toString())
 
                 }

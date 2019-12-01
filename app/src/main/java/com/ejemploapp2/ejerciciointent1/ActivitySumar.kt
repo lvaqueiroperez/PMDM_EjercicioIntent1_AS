@@ -14,22 +14,22 @@ class ActivitySumar : AppCompatActivity() {
         setContentView(R.layout.activity_sumar)
 
 
-        //PARA MOSTRAR EL RESULTADO DE LA SUMA: (crashea si no lo pasamos bien a int ???? Crashea al trabajar con int???)
+        //PARA MOSTRAR EL RESULTADO DE LA SUMA:
 
-        val num1 = intent.getIntExtra("num1",0)
+        val num1 = intent.getIntExtra("num1", 0)
         //ponemos un valor por defecto (0)
-        val num2 = intent.getIntExtra("num2",0)
+        val num2 = intent.getIntExtra("num2", 0)
 
         val result = num1 + num2
         val data = Intent()
-
+        //PONEMOS EL RESULTADO (como int) EN EL INTENT "DATA" PARA PODER PASARLO A OTRAS ACTIVIDADES
         data.putExtra("result", result)
-        //TENEMOS QUE PONERLO COMO UN STRING
-        textoResult.setText(result.toString())
-
         setResult(Activity.RESULT_OK, data)
 
-        //PARA VOLVER
+        //EN LA ETIQUETA TENEMOS QUE PONERLO COMO UN STRING
+        textoResult.setText(result.toString())
+
+        //PARA CERRAR LA ACTIVIDAD
         btnVolver.setOnClickListener { finish() }
 
 
